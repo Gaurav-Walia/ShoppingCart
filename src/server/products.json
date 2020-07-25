@@ -1,0 +1,14 @@
+{
+    "products": [
+        { "key": 1, "name": "Wheat floor", "category": "eatable", "price": 400 },
+        { "key": 2, "name": "Deodrant", "category": "hygiene", "price": 100 },
+        { "key": 3, "name": "Sanitizer", "category": "hygiene", "price": 80 },
+        { "key": 4, "name": "Tea", "category": "drink", "price": 100 },
+        { "key": 5, "name": "Floor Cleaner", "category": "hygiene", "price": 300 },
+        { "key": 6, "name": "Coffee", "category": "drink", "price": 110 },
+        { "key": 7, "name": "Noodles", "category": "eatable", "price": 80 },
+        { "key": 8, "name": "Talc", "category": "hygiene", "price":  150 },
+        { "key": 9, "name": "Jacket", "category": "wear", "price": 3000 },
+        { "key": 10, "name": "Shirt", "category": "wear", "price": 1000 }
+    ]
+}

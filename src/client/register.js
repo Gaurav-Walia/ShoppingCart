@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import client from "../server/pg";
-
+import Catalog from './Catalog';
 
 class Register extends Component {
     constructor() {
@@ -11,7 +12,8 @@ class Register extends Component {
             age: "Enter your age...",
             gender: "Enter your gender...",
             delivery_address: "Enter delivery address...",
-            billing_address: "Enter billing address..."
+            billing_address: "Enter billing address...",
+            user: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -22,9 +24,11 @@ class Register extends Component {
             if(err) {
                 console.log(err.msg);
             } else {
-                console.log(res.rows[0]);
+                this.setState({ user: res.rows[0]});
             }
         });
+
+        ReactDOM.render(<Catalog user={this.state.user} />, document.getElementById('root'));
     }
 
     render() {

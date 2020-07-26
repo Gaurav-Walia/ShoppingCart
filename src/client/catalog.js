@@ -1,60 +1,64 @@
 import React from 'react';
-import ReactDom, { Component } from 'react-dom';
+import ReactDOM from 'react-dom';
 import client from '../server/pg';
 
-class Catalog extends Component {
-    constructor() {
+class Catalog extends React.Component {
+    constructor(props) {
         super();
-        var products_list;
+        var products_list = [];
         let text = "SELECT * from products order_by price";
         client.query(text, values, (err, res) => {
             if(err) {
                 console.log(err.msg);
             } else {
-                products_list = res.rows[0];
+                products_list = res.rows;
             }
         });
         this.state = {
-            products: products_list,
-            cart: []
+            products: products_list
         };
 
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(event) {
-        event.preventDefault();
+        let text = "INSERT into user_products(user_id, products_id) VALUES(this.props.user, $2 RETURNING *";
         client.query(text, values, (err, res) => {
             if(err) {
                 console.log(err.msg);
             } else {
-                console.log(res.rows[0]);
+                alert("Products details saved!!");
             }
         });
+        event.preventDefault();
     }
 
     handleCheckout(event) {
-        this.setState({ cart: event.target.value });
-
+        console.log("User checked out successfully");
+        ReactDOM.render(<Checkout user={this.props.user}/>, document.getElementById('root'));
         event.preventDefault();
     }
-    
+
     render() {
         return (
-            { productsData.map(product => (
-                <div>
-                    <h1>Name</h1>
-                    <p>{product.name}</p>
+            <div>
+                <button onClick={ this.handleCheckout }>Checkout</button>
+                { this.state.products.map(product => (
+                    <div>
+                        <h1>Name</h1>
+                        <p>{product.name}</p>
 
-                    <h2>Category</h2>
-                    <p>{product.category}</p>
-                    
-                    <h2>Price</h2>
-                    <p>{product.price}</p>
+                        <h2>Category</h2>
+                        <p>{product.category}</p>
+                        
+                        <h2>Price</h2>
+                        <p>{product.price}</p>
 
-                    <button id={product.key} onClick={ this.handleClick }>Add to Cart</button>
-                </div> 
-            ))}
+                        <button id={product.key} onClick={ this.handleClick }>Add to Cart</button>
+                    </div> 
+                ))}
+            </div>
+            
         );
     }
 }

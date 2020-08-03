@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Shopping Cart is a web application that allows a customer to register, brrowse products  catalogue and manage shopping cart and notify cutomers's order details to their registered email address. It is written in Node JS (12.x) at its back-end and React JS on it front-end.  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
